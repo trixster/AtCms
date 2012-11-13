@@ -1,0 +1,27 @@
+{
+    "name": "atukai/at-cms",
+    "description": "A ZF2 module which provides a CMS functionality. Helps to create html pages and blocks",
+    "type": "library",
+    "keywords": [
+        "cms", "pages", "html", "static blocks", "AtCms", "atukai", "at", "zf2"
+    ],
+    "homepage": "https://github.com/atukai/AtCms",
+    "authors": [
+        {
+            "name": "Alexander Tukai",
+            "email": "atukai@gmail.com"
+        }
+    ],
+    "require": {
+        "zendframework/zendframework": "2.*",
+        "at-admin": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "AtCms": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
