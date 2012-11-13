@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
   `is_active` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'Is Page Active',
   `sort_order` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT 'Page Sort Order',
   PRIMARY KEY (`page_id`),
-  KEY `CMS_PAGE_IDENTIFIER` (`identifier`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='CMS Page Table';
+  UNIQUE KEY `identifier` (`identifier`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='CMS Page Table';

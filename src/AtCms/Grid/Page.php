@@ -13,7 +13,8 @@ class Page extends DataGrid\DataGrid
     {
         parent::init();
 
-        $this->setCaption('Manage pages');
+        $this->setCaption('Manage pages')
+             ->setIdentifierColumn('page_id');
 
         // id
         $this->getColumn('page_id')
@@ -51,11 +52,13 @@ class Page extends DataGrid\DataGrid
 
         // created_at
         $this->getColumn('created_at')
-             ->setLabel('Создана');
+             ->setLabel('Создана')
+             ->setVisibleInForm(false);
 
         // updated_at
         $this->getColumn('updated_at')
-             ->setLabel('Обновлена');
+             ->setLabel('Обновлена')
+             ->setVisibleInForm(false);
 
         // is_active
         $isActiveFilterFormElement = new Element\Select('is_active');
