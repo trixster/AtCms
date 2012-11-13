@@ -24,48 +24,48 @@ class Page extends DataGrid\DataGrid
 
         // uri
         $this->getColumn('identifier')
-             ->setLabel('Идентификатор страницы (uri)')
+             ->setLabel('Page identifier (uri)')
              ->addFilter(new Filter\Like())
              ->setSortable(true);
 
         // title
         $this->getColumn('title')
-             ->setLabel('Название')
+             ->setLabel('Title')
              ->addFilter(new Filter\Like());
 
         // content
         //$content = new ATF_DataGrid_Column_Wysiwyg('content');
         $this->getColumn('content')
-             ->setLabel('Текст')
+             ->setLabel('Page Content')
              ->setVisible(false);
         //$this->addColumn($content, true);
 
         // description
         $this->getColumn('meta_description')
-             ->setLabel('Meta description')
+             ->setLabel('Meta Description')
              ->setVisible(false);
 
         // keywords
         $this->getColumn('meta_keywords')
-             ->setLabel('Meta keywords')
+             ->setLabel('Meta Keywords')
              ->setVisible(false);
 
         // created_at
         $this->getColumn('created_at')
-             ->setLabel('Создана')
+             ->setLabel('Date Created')
              ->setVisibleInForm(false);
 
         // updated_at
         $this->getColumn('updated_at')
-             ->setLabel('Обновлена')
+             ->setLabel('Last Modified')
              ->setVisibleInForm(false);
 
         // is_active
         $isActiveFilterFormElement = new Element\Select('is_active');
-        $isActiveFilterFormElement->setValueOptions(array('' => 'Все', 0 => 'Нет', 1 => 'Да'));
+        $isActiveFilterFormElement->setValueOptions(array('' => 'All', 0 => 'No', 1 => 'Yes'));
 
         $this->getColumn('is_active')
-             ->setLabel('Включена')
+             ->setLabel('Enabled')
              ->addDecorator(new Decorator\YesNo())
              ->addFilter(new Filter\Equal)
              ->setFormElement(new Element\Checkbox('is_active'))
@@ -73,6 +73,6 @@ class Page extends DataGrid\DataGrid
 
         // sort_order
         $this->getColumn('sort_order')
-             ->setLabel('Порядок сортировки');
+             ->setLabel('Sort Order');
    }
 }
