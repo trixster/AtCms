@@ -5,6 +5,7 @@ namespace AtCms\Grid;
 use AtAdmin\DataGrid;
 use AtAdmin\DataGrid\Filter;
 use AtAdmin\DataGrid\Column\Decorator;
+use Zend\Form\Element;
 
 class Page extends DataGrid\DataGrid
 {
@@ -57,9 +58,15 @@ class Page extends DataGrid\DataGrid
              ->setLabel('Обновлена');
 
         // is_active
+        $isActiveFilterFormElement = new Element\Select('is_active');
+        $isActiveFilterFormElement->setValueOptions(array('' => 'Все', 0 => 'Нет', 1 => 'Да'));
+
         $this->getColumn('is_active')
              ->setLabel('Включена')
-             ->addDecorator(new Decorator\YesNo());
+             ->addDecorator(new Decorator\YesNo())
+             ->addFilter(new Filter\Equal)
+             ->setFormElement(new Element\Checkbox('is_active'))
+             ->setFilterFormElement($isActiveFilterFormElement);
 
         // sort_order
         $this->getColumn('sort_order')
