@@ -32,6 +32,14 @@ class Module
     }
 
     /**
+     * @param $moduleManager
+     */
+    public function init($moduleManager)
+    {
+        $moduleManager->loadModule('AtAdmin');
+    }
+
+    /**
      * @return array
      */
     public function getServiceConfig()
