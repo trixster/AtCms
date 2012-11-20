@@ -3,7 +3,7 @@
 namespace AtCms\Grid;
 
 use AtAdmin\DataGrid;
-use AtAdmin\DataGrid\Filter;
+use AtAdmin\DataGrid\Filter\Sql as SqlFilter;
 use AtAdmin\DataGrid\Column\Decorator;
 use Zend\Form\Element;
 
@@ -25,13 +25,13 @@ class Page extends DataGrid\DataGrid
         // uri
         $this->getColumn('identifier')
              ->setLabel('Page identifier (uri)')
-             ->addFilter(new Filter\Like())
+             ->addFilter(new SqlFilter\Like())
              ->setSortable(true);
 
         // title
         $this->getColumn('title')
              ->setLabel('Title')
-             ->addFilter(new Filter\Like());
+             ->addFilter(new SqlFilter\Like());
 
         // content
         //$content = new ATF_DataGrid_Column_Wysiwyg('content');
@@ -67,7 +67,7 @@ class Page extends DataGrid\DataGrid
         $this->getColumn('is_active')
              ->setLabel('Enabled')
              ->addDecorator(new Decorator\YesNo())
-             ->addFilter(new Filter\Equal)
+             ->addFilter(new SqlFilter\Equal())
              ->setFormElement(new Element\Checkbox('is_active'))
              ->setFilterFormElement($isActiveFilterFormElement);
 
