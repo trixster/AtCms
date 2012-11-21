@@ -22,7 +22,7 @@ class Admin_PageController extends DataGridController
 
         // Configure renderer
         $renderer = new Renderer\Html();
-        $renderer->setView($this->getServiceLocator()->get('Zend\View\Renderer\PhpRenderer'))
+        $renderer->setEngine($this->getServiceLocator()->get('Zend\View\Renderer\PhpRenderer'))
                  ->setCssFile('/css/modules/at-cms.css');
 
         // Create grid

@@ -14,7 +14,7 @@ class Page extends DataGrid\DataGrid
         parent::init();
 
         $this->setCaption('Manage pages')
-             ->setIdentifierColumn('page_id');
+             ->setIdentifierColumnName('page_id');
 
         // id
         $this->getColumn('page_id')

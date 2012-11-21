@@ -29,7 +29,7 @@ return array(
                             'pages' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/pages[/:action]',
+                                    'route' => '/pages[/:action][/:id]',
                                     'defaults' => array(
                                         'controller' => 'AtCms\Controller\Admin\Page',
                                         'action'     => 'index',
@@ -91,6 +91,18 @@ return array(
             'cms' => array(
                 'label' => 'CMS',
                 'route' => 'zfcadmin/cms',
+                'pages' => array(
+                    'pages-list' => array(
+                        'label' => 'Manage Pages',
+                        'route' => 'zfcadmin/cms/pages',
+                        'params' => array('action' => 'list'),
+                    ),
+                    'blocks-list' => array(
+                        'label' => 'Manage Blocks',
+                        'route' => 'zfcadmin/cms/blocks',
+                        'params' => array('action' => 'list'),
+                    ),
+                ),
             ),
         ),
     ),
