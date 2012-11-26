@@ -17,7 +17,7 @@ class Admin_PageController extends DataGridController
         // Setup data source
         $dataSource = new DataSource\ZendDbTableGateway(array(
             'table'        => 'cms_page',
-            'dbAdapter'    => $this->getServiceLocator()->get('db'),
+            'dbAdapter'    => $this->getServiceLocator()->get('atcms_zend_db_adapter'),
         ));
 
         // Configure renderer

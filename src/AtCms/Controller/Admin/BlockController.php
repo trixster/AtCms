@@ -10,14 +10,14 @@ use AtAdmin\DataGrid\Renderer;
 class Admin_BlockController extends DataGridController
 {
     /**
-     * @return \AtCms\Grid\Block|void
+     * @return \AtAdmin\DataGrid\DataGrid|\AtCms\Grid\Page
      */
     public function getGrid()
     {
         // Setup data source
         $dataSource = new DataSource\ZendDbTableGateway(array(
             'table'        => 'cms_block',
-            'dbAdapter'    => $this->getServiceLocator()->get('db'),
+            'dbAdapter'    => $this->getServiceLocator()->get('atcms_zend_db_adapter'),
         ));
 
         // Configure renderer
