@@ -21,6 +21,10 @@ class IndexController extends AbstractActionController
             return $this->notFoundAction();
         }
 
+        if (!$page->getIsActive()) {
+            return $this->notFoundAction();
+        }
+
         return new ViewModel(
             array('page' => $page)
         );

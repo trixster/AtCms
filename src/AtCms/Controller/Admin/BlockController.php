@@ -3,14 +3,14 @@
 namespace AtCms\Controller;
 
 use AtCms\Grid;
-use AtAdmin\Controller\DataGridController;
-use AtAdmin\DataGrid\DataSource;
-use AtAdmin\DataGrid\Renderer;
+use AtDataGrid\Controller\DataGridController;
+use AtDataGrid\DataGrid\DataSource;
+use AtDataGrid\DataGrid\Renderer;
 
 class Admin_BlockController extends DataGridController
 {
     /**
-     * @return \AtAdmin\DataGrid\DataGrid|\AtCms\Grid\Page
+     * @return \AtCms\Grid\Block
      */
     public function getGrid()
     {
@@ -26,7 +26,7 @@ class Admin_BlockController extends DataGridController
                  ->setCssFile('/css/modules/at-cms.css');
 
         // Create grid
-        $grid = new Grid\Page($dataSource, array(
+        $grid = new Grid\Block($dataSource, array(
             'order'        => $this->params()->fromQuery('order', 'block_id~asc'),
             'currentPage'  => $this->params()->fromQuery('page'),
             'itemsPerPage' => $this->params()->fromQuery('show_items'),

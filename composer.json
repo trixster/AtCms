@@ -14,7 +14,8 @@
     ],
     "require": {
         "zendframework/zendframework": "2.*",
-        "atukai/at-admin": "dev-master"
+        "atukai/at-admin": "dev-master",
+        "atukai/at-datagrid": "dev-master"
     },
     "autoload": {
         "psr-0": {

@@ -2,9 +2,9 @@
 
 namespace AtCms\Grid;
 
-use AtAdmin\DataGrid;
-use AtAdmin\DataGrid\Filter\Sql as SqlFilter;
-use AtAdmin\DataGrid\Column\Decorator;
+use AtDataGrid\DataGrid;
+use AtDataGrid\DataGrid\Filter\Sql as SqlFilter;
+use AtDataGrid\DataGrid\Column\Decorator;
 use Zend\Form\Element;
 
 class Page extends DataGrid\DataGrid

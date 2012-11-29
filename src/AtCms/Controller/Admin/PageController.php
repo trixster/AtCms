@@ -3,9 +3,9 @@
 namespace AtCms\Controller;
 
 use AtCms\Grid;
-use AtAdmin\Controller\DataGridController;
-use AtAdmin\DataGrid\DataSource;
-use AtAdmin\DataGrid\Renderer;
+use AtDataGrid\Controller\DataGridController;
+use AtDataGrid\DataGrid\DataSource;
+use AtDataGrid\DataGrid\Renderer;
 
 class Admin_PageController extends DataGridController
 {
@@ -16,8 +16,9 @@ class Admin_PageController extends DataGridController
     {
         // Setup data source
         $dataSource = new DataSource\ZendDbTableGateway(array(
-            'table'        => 'cms_page',
-            'dbAdapter'    => $this->getServiceLocator()->get('atcms_zend_db_adapter'),
+            'table'               => 'cms_page',
+            'dbAdapter'           => $this->getServiceLocator()->get('atcms_zend_db_adapter'),
+            //'identifierFieldName' => 'page_id'
         ));
 
         // Configure renderer

@@ -34,6 +34,42 @@ class Page implements PageInterface
     }
 
     /**
+     * @param $identifier
+     * @return Page
+     */
+    public function setIdentifier($identifier)
+    {
+        $this->identifier = $identifier;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdentifier()
+    {
+        return $this->identifier;
+    }
+
+    /**
+     * @param $title
+     * @return Page
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * @param $content
      * @return Page
      */
@@ -67,24 +103,6 @@ class Page implements PageInterface
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * @param $identifier
-     * @return Page
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->identifier = $identifier;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdentifier()
-    {
-        return $this->identifier;
     }
 
     /**
@@ -157,24 +175,6 @@ class Page implements PageInterface
     public function getSortOrder()
     {
         return $this->sortOrder;
-    }
-
-    /**
-     * @param $title
-     * @return Page
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
