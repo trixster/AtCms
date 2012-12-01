@@ -12,3 +12,15 @@ CREATE TABLE IF NOT EXISTS `cms_page` (
   PRIMARY KEY (`page_id`),
   UNIQUE KEY `identifier` (`identifier`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='CMS Page Table';
+
+CREATE TABLE IF NOT EXISTS `cms_block` (
+  `block_id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Block ID',
+  `title` varchar(255) DEFAULT NULL COMMENT 'Block Title',
+  `identifier` varchar(255) NOT NULL COMMENT 'Block String Identifier',
+  `content` text COMMENT 'Block Content',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Block Creation Time',
+  `updated_at` timestamp NULL DEFAULT NULL COMMENT 'Block Modification Time',
+  `is_active` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'Is Block Active',
+  PRIMARY KEY (`block_id`),
+  UNIQUE KEY `identifier` (`identifier`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='CMS Block Table';

@@ -8,7 +8,7 @@ interface PageInterface
 
     public function findByIdentifier($identifier);
 
-    public function insert($user);
+    public function insert($page);
 
-    public function update($user);
+    public function update($page);
 }

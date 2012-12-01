@@ -19,6 +19,7 @@ class PageHydrator extends ClassMethods
         if (!$object instanceof PageEntityInterface) {
             throw new Exception\InvalidArgumentException('$object must be an instance of AtCms\Entity\PageInterface');
         }
+
         /* @var $object PageInterface*/
         $data = parent::extract($object);
         $data = $this->mapField('id', 'page_id', $data);

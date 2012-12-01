@@ -16,6 +16,10 @@ class ModuleOptions extends AbstractOptions
      */
     protected $pageEntityClass = 'AtCms\Entity\Page';
 
+    /**
+     * @var string
+     */
+    protected $blockEntityClass = 'AtCms\Entity\Block';
 
     /**
      * Set page entity class name
@@ -35,5 +39,25 @@ class ModuleOptions extends AbstractOptions
     public function getPageEntityClass()
     {
         return $this->pageEntityClass;
+    }
+
+    /**
+     * Set block entity class name
+     *
+     * @param $blockEntityClass
+     * @return ModuleOptions
+     */
+    public function setBlockEntityClass($blockEntityClass)
+    {
+        $this->blockEntityClass = $blockEntityClass;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBlockEntityClass()
+    {
+        return $this->blockEntityClass;
     }
 }

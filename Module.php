@@ -69,6 +69,21 @@ class Module
                     $mapper->setHydrator($sm->get('atcms_page_hydrator'));
                     return $mapper;
                 },
+
+                'atcms_block_hydrator' => function () {
+                    $hydrator = new BlockHydrator();
+                    return $hydrator;
+                },
+
+                'atcms_block_mapper' => function ($sm) {
+                    $mapper = new Mapper\Block();
+                    $mapper->setDbAdapter($sm->get('atcms_zend_db_adapter'));
+                    $options = $sm->get('atcms_module_options');
+                    $entityClass = $options->getBlockEntityClass();
+                    $mapper->setEntityPrototype(new $entityClass);
+                    $mapper->setHydrator($sm->get('atcms_block_hydrator'));
+                    return $mapper;
+                },
             ),
         );
     }

@@ -51,7 +51,7 @@ return array(
                             'blocks' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/blocks[/:action]',
+                                    'route' => '/blocks[/:action][/:id]',
                                     'defaults' => array(
                                         'controller' => 'AtCms\Controller\Admin\Block',
                                         'action'     => 'index',
@@ -104,6 +104,12 @@ return array(
                     ),
                 ),
             ),
+        ),
+    ),
+
+    'view_helpers' => array(
+        'invokables' => array(
+            'atCmsBlock' => 'AtCms\View\Helper\Block',
         ),
     ),
 
