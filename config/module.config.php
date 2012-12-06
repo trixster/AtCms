@@ -107,12 +107,6 @@ return array(
         ),
     ),
 
-    'view_helpers' => array(
-        'invokables' => array(
-            'atCmsBlock' => 'AtCms\View\Helper\Block',
-        ),
-    ),
-
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',

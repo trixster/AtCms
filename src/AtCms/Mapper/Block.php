@@ -15,7 +15,7 @@ class Block extends AbstractDbMapper implements BlockInterface
      */
     public function findById($id)
     {
-        $select = $this->getSelect()->where(array('block_id' => $id));
+        $select = $this->getSelect()->where(array('block_id' => (int) $id));
         $entity = $this->select($select)->current();
 
         $this->getEventManager()->trigger('find', $this, array('entity' => $entity));
@@ -29,10 +29,30 @@ class Block extends AbstractDbMapper implements BlockInterface
      */
     public function findByIdentifier($identifier)
     {
-        $select = $this->getSelect()->where(array('identifier' => $identifier));
+        $select = $this->getSelect()->where(array('identifier' => (string) $identifier));
         $entity = $this->select($select)->current();
 
         $this->getEventManager()->trigger('find', $this, array('entity' => $entity));
+
+        return $entity;
+    }
+
+    /**
+     * Find entity by integer id or string identifier
+     *
+     * @param $identifier
+     * @return object
+     * @throws \Exception
+     */
+    public function find($identifier)
+    {
+        if (is_int($identifier)) {
+            $entity = $this->findById($identifier);
+        } elseif (is_string($identifier)) {
+            $entity = $this->findByIdentifier($identifier);
+        } else {
+            throw new \Exception('Wrong block identifier provided.');
+        }
 
         return $entity;
     }

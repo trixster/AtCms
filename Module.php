@@ -2,7 +2,10 @@
 
 namespace AtCms;
 
+use AtCms\Mapper\Block as BlockMapper;
 use AtCms\Mapper\PageHydrator;
+use AtCms\Mapper\BlockHydrator;
+use AtCms\View\Helper\Block as BlockViewHelper;
 
 class Module
 {
@@ -49,6 +52,10 @@ class Module
                 'atcms_zend_db_adapter' => 'Zend\Db\Adapter\Adapter',
             ),
 
+            'invokables' => array(
+                'atcms_block_service' => 'AtCms\Service\Block',
+            ),
+
             'factories' => array(
                 'atcms_module_options' => function ($sm) {
                     $config = $sm->get('Config');
@@ -76,13 +83,30 @@ class Module
                 },
 
                 'atcms_block_mapper' => function ($sm) {
-                    $mapper = new Mapper\Block();
+                    $mapper = new BlockMapper();
                     $mapper->setDbAdapter($sm->get('atcms_zend_db_adapter'));
                     $options = $sm->get('atcms_module_options');
                     $entityClass = $options->getBlockEntityClass();
                     $mapper->setEntityPrototype(new $entityClass);
                     $mapper->setHydrator($sm->get('atcms_block_hydrator'));
                     return $mapper;
+                },
+            ),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                'atCmsBlock' => function($sm) {
+                    $locator = $sm->getServiceLocator();
+                    $viewHelper = new BlockViewHelper();
+                    $viewHelper->setBlockMapper($locator->get('atcms_block_mapper'));
+                    return $viewHelper;
                 },
             ),
         );
