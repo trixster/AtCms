@@ -2,41 +2,54 @@
 
 namespace AtCms\View\Helper;
 
+use AtCms\Block\BlockServiceInterface;
+use AtCms\Block\Type\TypeInterface;
 use Zend\View\Helper\AbstractHelper;
-use AtCms\Mapper\Block as BlockMapper;
+use AtCms\Service\Block as BlockService;
+use AtCms\Block\BlockRendererInterface;
 
 class Block extends AbstractHelper
 {
-    protected $blockMapper;
+    /**
+     * @var BlockServiceInterface
+     */
+    protected $blockService;
 
     /**
-     * @param int|string $identifier
-     * @return string
+     * @param $type
+     * @param array $settings
+     * @return mixed
+     * @throws \Exception
      */
-    public function __invoke($identifier)
+    public function __invoke($type, $settings = array())
     {
-        $block = $this->getBlockMapper()->find($identifier);
-        if ($block) {
-            return $block->getContent();
+        $block = $this->blockService->create($type, $settings);
+        if (!$block) {
+            throw new \Exception('Block of "' . $type . '" type couldn\'t be create');
         }
 
-        return '';
+        /** @var \AtCms\Block\Type\TypeInterface $typeService  */
+        $typeService = $this->blockService->getTypeService($block);
+        return $typeService->execute($block);
     }
 
     /**
-     * @param \AtCms\Mapper\Block $blockMapper
+     * @param \AtCms\Service\Block $blockService
+     * @return $this
      */
-    public function setBlockMapper(BlockMapper $blockMapper)
+    public function setBlockService(BlockService $blockService)
     {
-        $this->blockMapper = $blockMapper;
+        $this->blockService = $blockService;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @param $blockService
+     * @return $this
      */
-    public function getBlockMapper()
+    public function setBlockRenderer(BlockRendererInterface $renderer)
     {
-        return $this->blockMapper;
+        $this->blockRenderer = $renderer;
+        return $this;
     }
 }

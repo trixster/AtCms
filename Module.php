@@ -6,6 +6,7 @@ use AtCms\Mapper\Block as BlockMapper;
 use AtCms\Mapper\PageHydrator;
 use AtCms\Mapper\BlockHydrator;
 use AtCms\View\Helper\Block as BlockViewHelper;
+use AtCms\Block\Type;
 
 class Module
 {
@@ -91,6 +92,18 @@ class Module
                     $mapper->setHydrator($sm->get('atcms_block_hydrator'));
                     return $mapper;
                 },
+
+                'atcms_block_type_text' => function ($sm) {
+                    return new Type\Text();
+                },
+
+                'atcms_block_type_template' => function ($sm) {
+                    return new Type\Template($sm->get('ViewRenderer'));
+                },
+
+                'atcms_block_type_rss' => function ($sm) {
+                    return new Type\Rss($sm->get('View>Renderer'));
+                },
             ),
         );
     }
@@ -105,7 +118,7 @@ class Module
                 'atCmsBlock' => function($sm) {
                     $locator = $sm->getServiceLocator();
                     $viewHelper = new BlockViewHelper();
-                    $viewHelper->setBlockMapper($locator->get('atcms_block_mapper'));
+                    $viewHelper->setBlockService($locator->get('atcms_block_service'));
                     return $viewHelper;
                 },
             ),

@@ -26,13 +26,13 @@ $settings = array(
     //'page_entity_class' => 'AtCms\Entity\Page',
 
     /**
-     * Block Model Entity Class
+     * Html Block Model Entity Class
      *
      * Name of Entity class to use. Useful for using your own entity class
      * instead of the default one provided. Default is AtCms\Entity\Block.
      * The entity class should implement AtCms\Entity\BlockInterface
      */
-    //'block_entity_class' => 'AtCms\Entity\Block',
+    //'block_html_entity_class' => 'AtCms\Entity\Block\Html',
 );
 
 /**

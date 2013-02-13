@@ -6,10 +6,16 @@ use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\ServiceManager\ServiceManager;
 use ZfcBase\EventManager\EventProvider;
 use AtCms\Mapper\BlockInterface as BlockMapperInterface;
-use AtCms\Options\ModuleOptions;
+use AtCms\Service\BlockServiceInterface;
+use AtCms\Entity\Block as BlockEntity;
 
 class Block extends EventProvider implements ServiceManagerAwareInterface
 {
+    /**
+     * @var array
+     */
+    protected $blockServices;
+
     /**
      * @var BlockMapperInterface
      */
@@ -19,6 +25,14 @@ class Block extends EventProvider implements ServiceManagerAwareInterface
      * @var ServiceManager
      */
     protected $serviceManager;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->blockServices = array();
+    }
 
     /**
      * @return \AtCms\Mapper\BlockInterface
@@ -42,35 +56,6 @@ class Block extends EventProvider implements ServiceManagerAwareInterface
     }
 
     /**
-     * @return mixed
-     */
-    public function getOptions()
-    {
-        if (!$this->options) {
-            $this->setOptions($this->getServiceManager()->get('atcms_module_options'));
-        }
-        return $this->options;
-    }
-
-    /**
-     * @param ModuleOptions $options
-     */
-    public function setOptions(ModuleOptions $options)
-    {
-        $this->options = $options;
-    }
-
-    /**
-     * Retrieve service manager instance
-     *
-     * @return ServiceManager
-     */
-    public function getServiceManager()
-    {
-        return $this->serviceManager;
-    }
-
-    /**
      * Set service manager instance
      *
      * @param ServiceManager $serviceManager
@@ -80,5 +65,32 @@ class Block extends EventProvider implements ServiceManagerAwareInterface
     {
         $this->serviceManager = $serviceManager;
         return $this;
+    }
+
+    /**
+     * @param $type
+     * @param $options
+     * @return Block
+     */
+    public function create($type, $options)
+    {
+        $block = new BlockEntity();
+        $block->setId(uniqid());
+        $block->setType($type);
+        $block->setSettings($options);
+        $block->setEnabled(true);
+        $block->setCreatedAt(new \DateTime());
+        $block->setUpdatedAt(new \DateTime());
+
+        return $block;
+    }
+
+    /**
+     * @param \AtCms\Entity\Block $block
+     */
+    public function getTypeService(BlockEntity $block)
+    {
+        $type = $block->getType();
+        return $this->serviceManager->get($type);
     }
 }

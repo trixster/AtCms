@@ -5,9 +5,9 @@ namespace AtCms\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController
+class PageController extends AbstractActionController
 {
-    public function indexAction()
+    public function viewAction()
     {
         $identifier = $this->getEvent()->getRouteMatch()->getParam('id');
         if (!$identifier) {

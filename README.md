@@ -1,8 +1,11 @@
 # AtCms
 
-Version 0.0.1
+Version 0.1.0
 
-AtCms is a [Zend Framework 2](http://framework.zend.com) module which provides a base CMS functionality. Helps to create html pages and blocks.
+AtCms is a [Zend Framework 2](http://framework.zend.com) module which provides a base CMS functionality.
+Helps to create html pages and blocks.
+
+**NOTE: This module is still under heavy development. Do not use it in production**
 
 ## Requirements
 

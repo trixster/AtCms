@@ -91,6 +91,7 @@ return array(
             'cms' => array(
                 'label' => 'CMS',
                 'route' => 'zfcadmin/cms',
+                'order' => 20,
                 'pages' => array(
                     'pages-list' => array(
                         'label' => 'Manage Pages',
